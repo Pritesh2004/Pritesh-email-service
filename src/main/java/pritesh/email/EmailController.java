@@ -20,13 +20,21 @@ public class EmailController {
 	@PostMapping("/email")
 	public ResponseEntity<User> postQueries(@RequestBody User user) throws Exception{
 		
-		String emailBody = "This is a message from your portfolio from " + user.getName() + ",\n"
+		String toMe = "This is a message from your portfolio from " + user.getName() + ",\n"
 				+ "The message body is as follows" + ",\n\n"
 				+ user.getMessage()
 				 +"\n\n"+ "Best regards,"+"\n"+ user.getName() +"\n"+ user.getEmail()+"";
 		
+		String toUser = "Dear " + user.getName() + ",\n\n"
+                + "Thank you for reaching out to me through my portfolio.\n"
+                + "I appreciate your message and will get back to you soon.\n\n"
+                + "Best regards,\n"
+                + "Pritesh Patil\n";
 
-		emailService.sendEmail(user.getEmail(), user.getSubject() , emailBody);
+		
+		emailService.sendEmail("patilpritesh7277@gmail.com", user.getSubject() , toMe);
+
+		emailService.sendEmail(user.getEmail(), user.getSubject() , toUser);
 		
 		User newUser = new User(user.getEmail(),user.getSubject(),user.getName(),user.getMessage()); 
 		
