@@ -34,7 +34,7 @@ public class EmailController {
 		
 		emailService.sendEmail("patilpritesh7277@gmail.com", user.getSubject() , toMe);
 
-		emailService.sendEmail(user.getEmail(), user.getSubject() , toUser);
+		emailService.sendEmail(user.getEmail(), "Thank You for Your Message", toUser);
 		
 		User newUser = new User(user.getEmail(),user.getSubject(),user.getName(),user.getMessage()); 
 		
